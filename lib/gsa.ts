@@ -53,8 +53,18 @@ export async function ingestGsaAuctions(): Promise<IngestResult> {
           sourceLotId: normalized.sourceLotId ?? ''
         }
       },
-      create: { ...normalized, sourceLotId: normalized.sourceLotId ?? '' },
-      update: { ...normalized, sourceLotId: normalized.sourceLotId ?? '', lastSeen: new Date(), status: normalized.status }
+     create: {
+  ...normalized,
+  sourceLotId: normalized.sourceLotId ?? '',
+  rawData: normalized.rawData ? JSON.stringify(normalized.rawData) : null
+},
+update: {
+  ...normalized,
+  sourceLotId: normalized.sourceLotId ?? '',
+  rawData: normalized.rawData ? JSON.stringify(normalized.rawData) : null,
+  lastSeen: new Date(),
+  status: normalized.status
+}
     });
     upserted++;
   }
