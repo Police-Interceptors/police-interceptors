@@ -53,9 +53,27 @@ export async function ingestGsaAuctions(): Promise<IngestResult> {
           sourceLotId: normalized.sourceLotId ?? ''
         }
       },
-     create: {
-  ...normalized,
-  sourceLotId: normalized.sourceLotId ?? '',
+     await prisma.auctionListing.upsert({
+  where: {
+    source_sourceAuctionId_sourceLotId: {
+      source: normalized.source,
+      sourceAuctionId: normalized.sourceAuctionId,
+      sourceLotId: normalized.sourceLotId ?? ''
+    }
+  },
+  create: {
+    ...normalized,
+    sourceLotId: normalized.sourceLotId ?? '',
+    rawData: normalized.rawData ? JSON.stringify(normalized.rawData) : null
+  },
+  update: {
+    ...normalized,
+    sourceLotId: normalized.sourceLotId ?? '',
+    rawData: normalized.rawData ? JSON.stringify(normalized.rawData) : null,
+    lastSeen: new Date(),
+    status: normalized.status
+  }
+});
   rawData: normalized.rawData ? JSON.stringify(normalized.rawData) : null
 },
 update: {
