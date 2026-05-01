@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -30,7 +30,7 @@ model AuctionListing {
   status          String   @default("active")
   sourceUrl       String
   imageUrl        String?
-  rawData         Json?
+  rawData         String?
   lastSeen        DateTime @default(now())
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
