@@ -18,9 +18,19 @@ export async function fetchGsaAuctions() {
 
   const payload = await res.json();
 
-  if (Array.isArray(payload)) return payload;
-  if (payload?.data) return payload.data;
-  if (payload?.results) return payload.results;
+  // 🔥 DEBUG: see what API actually returns
+  console.log("GSA RAW:", payload);
+
+  // ✅ CORRECT handling of response
+  if (payload?.results && Array.isArray(payload.results)) {
+    return payload.results;
+  }
+
+  // handle empty / error response
+  if (payload?.error) {
+    console.log("GSA ERROR:", payload.error);
+    return [];
+  }
 
   return [];
 }
@@ -28,8 +38,15 @@ export async function fetchGsaAuctions() {
 export async function ingestGsaAuctions() {
   const records = await fetchGsaAuctions();
 
+  let inserted = 0;
+
   for (const record of records) {
+    console.log("RECORD:", record);
+
     const normalized = normalizeGsaAuction(record);
+
+    console.log("NORMALIZED:", normalized);
+
     if (!normalized) continue;
 
     await prisma.auctionListing.upsert({
@@ -53,7 +70,9 @@ export async function ingestGsaAuctions() {
         status: normalized.status
       }
     });
+
+    inserted++;
   }
 
-  return { success: true, count: records.length };
+  return { success: true, count: inserted };
 }
