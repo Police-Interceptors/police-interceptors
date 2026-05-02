@@ -1,51 +1,22 @@
 import Link from 'next/link';
 
-const auctionSites = [
-  {
-    name: 'GSA Auctions',
-    description: 'Federal surplus vehicles, fleet cars, trucks, and equipment.',
-    href: 'https://gsaauctions.gov',
-  },
-  {
-    name: 'GovDeals',
-    description: 'City, county, police, school, and local government surplus.',
-    href: 'https://www.govdeals.com',
-  },
-  {
-    name: 'GovPlanet',
-    description: 'Government fleet trucks, heavy equipment, trailers, and utility vehicles.',
-    href: 'https://www.govplanet.com',
-  },
-  {
-    name: 'Public Surplus',
-    description: 'Local agency, school district, and municipal auction listings.',
-    href: 'https://www.publicsurplus.com',
-  },
-];
-
 const categories = [
   {
     title: 'Police Vehicles',
-    icon: '🚓',
+    image: 'https://www.publicsurplus.com/Images/VehicleSample1.jpg',
     href: 'https://gsaauctions.gov/auctions/auctions-list/?q=police',
   },
   {
     title: 'Pickup Trucks',
-    icon: '🛻',
-    href: 'https://www.govdeals.com/index.cfm?fa=Main.AdvSearchResults&kWord=pickup',
+    image: 'https://www.publicsurplus.com/Images/VehicleSample2.jpg',
+    href: 'https://www.govdeals.com/index.cfm?fa=Main.AdvSearchResults&kWord=truck',
   },
   {
     title: 'SUVs',
-    icon: '🚙',
+    image: 'https://www.publicsurplus.com/Images/VehicleSample3.jpg',
     href: 'https://www.publicsurplus.com/sms/browse/search?keyword=suv',
   },
-  {
-    title: 'Seized Vehicles',
-    icon: '🔑',
-    href: 'https://www.usa.gov/car-auctions',
-  },
 ];
-
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#07111f] text-white">
