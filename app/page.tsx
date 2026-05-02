@@ -52,7 +52,7 @@ export default function Home() {
             </div>
 
             <h1 className="text-4xl font-black leading-tight tracking-tight sm:text-6xl">
-              Find government vehicle auctions without searching dozens of sites.
+              Find government vehicle auctions fast
             </h1>
 
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
