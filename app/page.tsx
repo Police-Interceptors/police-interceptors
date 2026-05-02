@@ -25,10 +25,10 @@ const auctionSites = [
     href: 'https://gsaauctions.gov',
   },
   {
-  name: 'Public Surplus',
-  description: 'Local agency, school district, and municipal auction listings.',
-  href: 'https://www.publicsurplus.com',
-},
+    name: 'GovDeals',
+    description: 'City, county, police, school, and local government surplus.',
+    href: 'https://www.govdeals.com',
+  },
   {
     name: 'GovPlanet',
     description: 'Government fleet trucks, heavy equipment, trailers, and utility vehicles.',
