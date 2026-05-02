@@ -43,7 +43,13 @@ export async function ingestGsaAuctions() {
   for (const record of records) {
     console.log("RECORD:", record);
 
-    const normalized = normalizeGsaAuction(record);
+    console.log("RAW RECORD:", record);
+
+const normalized = normalizeGsaAuction(record);
+
+console.log("NORMALIZED:", normalized);
+
+if (!normalized) continue;
 
     console.log("NORMALIZED:", normalized);
 
